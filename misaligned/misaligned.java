@@ -16,7 +16,6 @@ public class misaligned {
         return colorPair;
     }
     public static void main(String[] args) { 
-        int result = printColorMap();
 	Map<String, String> result = printColorMap();
         assert(result.get("23").equals("Black Brown"));
 	assert(result.get("02").equals("White Orange"));
