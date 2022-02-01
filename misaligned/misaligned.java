@@ -1,18 +1,30 @@
-public class Misaligned {
-    static int printColorMap() {
-        String majorColors[] = {"White", "Red", "Black", "Yellow", "Violet"};
-        String minorColors[] = {"Blue", "Orange", "Green", "Brown", "Slate"};
-        int i = 0, j = 0;
-        for(i = 0; i < 5; i++) {
-            for(j = 0; j < 5; j++) {
-                System.out.printf("%d | %s | %s\n", i * 5 + j, majorColors[i], minorColors[i]);
-            }
-        }
-        return i * j;
+import java.util.HashMap;
+import java.util.Map;
+
+public class misaligned {
+  static Map<Integer, String> colorPair = new HashMap<>();
+  static String[] majorColors = { "White", "Red", "Black", "Yellow", "Violet" };
+  static String[] minorColors = { "Blue", "Orange", "Green", "Brown", "Slate" };
+
+  static void printColorMap(final int pairNumber, final int i, final int j) { 
+    System.out.printf("%3d | %8s | %8s%n", pairNumber, majorColors[i - 1], minorColors[j - 1]);
+  }
+
+  static Map<Integer, String> getColorPair() {
+    int i = 1, j = 1;
+    for (i = 1; i <= 5; i++) {
+      for (j = 1; j <= 5; j++) {
+        int pairNumber = ((i - 1) * 5) + j;
+        colorPair.put(pairNumber, majorColors[i - 1] + " " + minorColors[j - 1]);
+        printColorMap(pairNumber, i, j);
+      }
     }
-    public static void main(String[] args) { 
-        int result = printColorMap();
-        assert(result == 25);
-        System.out.println("All is well (maybe!)");
-    }
+    return colorPair;
+  }
+  public static void main(String[] args) { 
+  Map<Integer, String> colorMap = getColorPair();
+      assert(colorMap.get(14).equals("Black Brown"));
+      assert(colorMap.get(2).equals("White Orange"));
+      System.out.println("All is well (maybe!)");
+  }
 }
